@@ -36,9 +36,11 @@ function(input, output, session) {
 
   output$table_weather <- renderTable({
       columns = c("feel_avg_04", "sunny_cnt_04", "sunny_cnt_07", "rainy_cnt_07", "hummd_daily_min_03", "popu_per_shops")
+      input_shopId = input$shopIdInput
+
       data.frame(
-          "2018年" = df_shop[df_shop$year == 2018][columns],
-          "2019年" = df_shop[df_shop$yar == 2019][columns]
+          "2018年" = df_shop[df_shop$shop_id == input_shopId & df_shop$year == 2018][columns],
+          "2019年" = df_shop[df_shop$shop_id == input_shopId & df_shop$year == 2019][columns]
       )
   })
 
